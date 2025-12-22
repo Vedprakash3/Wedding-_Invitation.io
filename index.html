@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            text-align: center;
+            padding: 10px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            max-width: 90%;
+            width: 330px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            margin: auto;
+            overflow: hidden;
+            animation: slideIn 0.6s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .invitation-text {
+            font-size: 24px;
+            background-color: #e65100;
+            color: #fff;
+            margin: 15px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 12px 0;
+        }
+
+        .img-square {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .img-round {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .ganesh-text {
+            font-size: 1.1em;
+            color: #d32f2f;
+            margin-top: 8px;
+        }
+
+        h4 {
+            font-size: 14px;
+            color: #444;
+            padding: 0 12px;
+        }
+
+        .names {
+            font-size: 16px;
+            color: #ff6347;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .names h5 {
+            margin: 4px 0;
+            font-size: 13px;
+            color: #555;
+            font-weight: normal;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content p {
+            color: #555;
+            font-size: 14px;
+            margin: 6px 0;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 14px;
+            background-color: #ff6347;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <p class="invitation-text">You're Invited!</p>
+
+    <!-- Ganesh Image -->
+    <div class="image-container">
+        <img src="ganesh.jpeg" alt="Lord Ganesh" class="img-square">
+        <p class="ganesh-text">|| श्री गणेशाय नमः ||</p>
+    </div>
+
+    <h4>
+        वक्रतुंड महाकाय सूर्यकोटि समप्रभ ।  
+        निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+    </h4>
+
+    <!-- Names -->
+    <div class="names">
+        Er. Rishabh Shukla
+        <h5>Son of Ke Shukla & Kiran Shukla</h5>
+    </div>
+
+    <!-- Wedding Hands Image -->
+    <div class="image-container">
+        <img src="hands.jpeg" alt="Wedding Hands" class="img-round">
+    </div>
+
+    <div class="names">
+        Er. Shriya Dubey
+        <h5>Daughter of Sunil Dubey & Anita Dubey</h5>
+    </div>
+
+    <!-- Event Details -->
+    <div class="card-content">
+        <p>🎉 <strong>Event:</strong> Wedding Invitation</p>
+
+        <p>📅 <strong>Tel Poojan:</strong> Fri, 04 Oct 2024</p>
+        <p>⏰ <strong>Time:</strong> 02:00 PM</p>
+
+        <p>📅 <strong>Matri Poojan:</strong> Sat, 05 Oct 2024</p>
+        <p>⏰ <strong>Time:</strong> 08:00 AM</p>
+
+        <p>📅 <strong>Shubh Vivah:</strong> Sun, 06 Oct 2024</p>
+        <p>⏰ <strong>Time:</strong> 06:00 PM</p>
+
+        <p>📅 <strong>Vidai:</strong> Mon, 07 Oct 2024</p>
+        <p>⏰ <strong>Time:</strong> 06:00 AM</p>
+
+        <p>
+            📍 <strong>Venue:</strong><br>
+            Aarna Swarna,<br>
+            Dattani Mall, Vasai (W)
+        </p>
+
+        <a href="#" class="button">We solicit your esteemed presence</a>
+    </div>
+
+</div>
+
+</body>
+</html>
