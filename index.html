@@ -1,148 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
-            text-align: center;
-            padding: 10px;
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-        .card {
-            background-color: #fff;
-            border-radius: 10px;
-            max-width: 90%;
-            width: 330px;
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-            margin: auto;
-            overflow: hidden;
-            animation: slideIn 0.6s ease-in-out;
-        }
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff7e5f, #feb47b);
+        flex-direction: column;
+        padding: 20px;
+    }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+    .card {
+        background: #fff;
+        width: 320px;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        overflow: hidden;
+        text-align: center;
+        color: #333;
+    }
 
-        .invitation-text {
-            font-size: 24px;
-            background-color: #e65100;
-            color: #fff;
-            margin: 15px;
-            font-weight: bold;
-            padding: 10px;
-            border-radius: 5px;
-        }
+    .header {
+        background: #e65100;
+        color: white;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-        .image-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 12px 0;
-        }
+    .ganesh {
+        padding: 10px;
+    }
 
-        .img-square {
-            width: 130px;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    .ganesh img {
+        width: 120px;
+        height: 120px;
+        border-radius: 10px;
+    }
 
-        .img-round {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    .sanskrit {
+        font-size: 13px;
+        color: #d32f2f;
+        margin-top: 5px;
+    }
 
-        .ganesh-text {
-            font-size: 1.1em;
-            color: #d32f2f;
-            margin-top: 8px;
-        }
+    .names {
+        padding: 10px;
+        color: #ff6347;
+        font-weight: bold;
+    }
 
-        h4 {
-            font-size: 14px;
-            color: #444;
-            padding: 0 12px;
-        }
+    .names h5 {
+        font-size: 12px;
+        color: #555;
+        margin: 4px 0;
+        font-weight: normal;
+    }
 
-        .names {
-            font-size: 16px;
-            color: #ff6347;
-            margin: 10px 0;
-            font-weight: bold;
-        }
+    .couple img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        margin: 10px 0;
+    }
 
-        .names h5 {
-            margin: 4px 0;
-            font-size: 13px;
-            color: #555;
-            font-weight: normal;
-        }
+    .content {
+        padding: 12px;
+        font-size: 14px;
+        color: #555;
+        line-height: 1.6;
+    }
 
-        .card-content {
-            padding: 15px;
-        }
+    .content p {
+        margin: 6px 0;
+    }
 
-        .card-content p {
-            color: #555;
-            font-size: 14px;
-            margin: 6px 0;
-        }
+    .tagline {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background: #ff6347;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 13px;
+    }
 
-        .button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 14px;
-            background-color: #ff6347;
-            color: #fff;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 14px;
-        }
-    </style>
+    .download-btn {
+        margin-top: 20px;
+        padding: 10px 18px;
+        background: #ff6347;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+</style>
 </head>
 
 <body>
 
-<div class="card">
+<!-- CARD -->
+<div class="card" id="invitationCard">
 
-    <p class="invitation-text">You're Invited!</p>
+    <div class="header">Wedding Invitation</div>
 
-    <!-- Ganesh Image -->
-    <div class="image-container">
-        <img src="ganesh.jpeg" alt="Lord Ganesh" class="img-square">
-        <p class="ganesh-text">|| श्री गणेशाय नमः ||</p>
+    <!-- Ganesh -->
+    <div class="ganesh">
+        <img src="https://raw.githubusercontent.com/Vedprakash3/Wedding-_Invitation.io/refs/heads/main/ganesh.jpeg">
+        <div class="sanskrit">|| श्री गणेशाय नमः ||</div>
     </div>
-
-    <h4>
+<h4>
         वक्रतुंड महाकाय सूर्यकोटि समप्रभ ।  
         निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
     </h4>
-
-    <!-- Names -->
     <div class="names">
         Er. Rishabh Shukla
         <h5>Son of Ke Shukla & Kiran Shukla</h5>
     </div>
 
-    <!-- Wedding Hands Image -->
-    <div class="image-container">
-        <img src="hands.jpeg" alt="Wedding Hands" class="img-round">
+    <div class="couple">
+        <img src="https://raw.githubusercontent.com/Vedprakash3/Wedding-_Invitation.io/refs/heads/main/hands.jpeg">
     </div>
 
     <div class="names">
@@ -150,8 +139,7 @@
         <h5>Daughter of Sunil Dubey & Anita Dubey</h5>
     </div>
 
-    <!-- Event Details -->
-    <div class="card-content">
+   <div class="card-content">
         <p>🎉 <strong>Event:</strong> Wedding Invitation</p>
 
         <p>📅 <strong>Tel Poojan:</strong> Fri, 04 Oct 2024</p>
@@ -172,10 +160,59 @@
             Dattani Mall, Vasai (W)
         </p>
 
-        <a href="#" class="button">We solicit your esteemed presence</a>
+        <a class="tagline">We solicit your esteemed presence</a>
     </div>
 
 </div>
 
+<!-- BUTTON OUTSIDE -->
+<button class="download-btn" onclick="downloadPDF()">
+    Download PDF
+</button>
+
+<script>
+async function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const card = document.getElementById("invitationCard");
+
+    const canvas = await html2canvas(card, {
+        scale: 3,
+        useCORS: true,
+        backgroundColor: "#ffffff",
+        scrollX: 0,
+        scrollY: 0
+    });
+
+    const pdf = new jsPDF("p", "pt", "a4");
+
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+
+    const margin = 20;
+
+    const imgWidth = pageWidth - margin * 2;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    const imgData = canvas.toDataURL("image/png", 1.0);
+
+    const maxHeight = pageHeight - margin * 2;
+
+    let finalWidth = imgWidth;
+    let finalHeight = imgHeight;
+
+    if (imgHeight > maxHeight) {
+        const ratio = maxHeight / imgHeight;
+        finalWidth = imgWidth * ratio;
+        finalHeight = imgHeight * ratio;
+    }
+
+    const x = (pageWidth - finalWidth) / 2;
+
+    pdf.addImage(imgData, "PNG", x, margin, finalWidth, finalHeight);
+
+    pdf.save("wedding-invitation.pdf");
+}
+</script>
+
 </body>
-</html> 
+</html>
