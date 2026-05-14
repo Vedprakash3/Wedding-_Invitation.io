@@ -175,7 +175,53 @@
         <a href="#" class="button">We solicit your esteemed presence</a>
     </div>
 
-</div>
+</div><button class="download-btn" onclick="downloadPDF()">Download PDF</button>
 
+<script>
+async function downloadPDF() {
+    try {
+        const { jsPDF } = window.jspdf;
+        const card = document.getElementById('invitationCard');
+
+        const canvas = await html2canvas(card, {
+            scale: 5,
+            useCORS: true,
+            backgroundColor: '#ffffff',
+            letterRendering: true,
+            scrollX: 0,
+            scrollY: 0
+        });
+
+        const pdf = new jsPDF('p', 'pt', 'a4');
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const margin = 25;
+
+        const imgWidth = pageWidth - margin * 2;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        const imgData = canvas.toDataURL('image/png', 1.0);
+
+        // Auto-fit full invitation on a single page to prevent duplicated lines or split sections
+        const maxHeight = pageHeight - margin * 2;
+        let finalWidth = imgWidth;
+        let finalHeight = imgHeight;
+
+        if (imgHeight > maxHeight) {
+            const scaleRatio = maxHeight / imgHeight;
+            finalWidth = imgWidth * scaleRatio;
+            finalHeight = imgHeight * scaleRatio;
+        }
+
+        const xOffset = (pageWidth - finalWidth) / 2;
+        pdf.addImage(imgData, 'PNG', xOffset, margin, finalWidth, finalHeight);
+
+        pdf.save('engagement_invitation_card.pdf');
+    } catch (error) {
+        alert('PDF generation failed. Please try again.');
+        console.error(error);
+    }
+}
+</script>
 </body>
 </html>
