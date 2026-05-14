@@ -1,378 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
 
-    <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
     <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        body{
+        body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #ff7e5f, #feb47b);
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            min-height:100vh;
-            flex-direction:column;
-            padding:20px;
+            text-align: center;
+            padding: 10px;
         }
 
-        .card{
-            width:360px;
-            max-width:95%;
-            background:#fff;
-            border-radius:14px;
-            overflow:hidden;
-            box-shadow:0 10px 20px rgba(0,0,0,0.25);
-            text-align:center;
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            max-width: 90%;
+            width: 330px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            margin: auto;
+            overflow: hidden;
+            animation: slideIn 0.6s ease-in-out;
         }
 
-        .header{
-            background:#e65100;
-            color:#fff;
-            padding:18px;
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        .header h1{
-            font-size:26px;
+        .invitation-text {
+            font-size: 24px;
+            background-color: #e65100;
+            color: #fff;
+            margin: 15px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
         }
 
-        .image-container{
-            margin:18px 0;
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 12px 0;
         }
 
-        .img-square{
-            width:150px;
-            height:150px;
-            object-fit:cover;
-            border-radius:12px;
-            box-shadow:0 4px 12px rgba(0,0,0,0.2);
+        .img-square {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .img-round{
-            width:170px;
-            height:170px;
-            object-fit:cover;
-            border-radius:50%;
-            box-shadow:0 4px 12px rgba(0,0,0,0.2);
+        .img-round {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .ganesh-text{
-            margin-top:10px;
-            color:#d32f2f;
-            font-size:18px;
-            font-weight:bold;
+        .ganesh-text {
+            font-size: 1.1em;
+            color: #d32f2f;
+            margin-top: 8px;
         }
 
-        .shlok{
-            padding:0 18px;
-            color:#444;
-            font-size:15px;
-            line-height:1.8;
+        h4 {
+            font-size: 14px;
+            color: #444;
+            padding: 0 12px;
         }
 
-        .names{
-            margin:18px 0;
+        .names {
+            font-size: 16px;
+            color: #ff6347;
+            margin: 10px 0;
+            font-weight: bold;
         }
 
-        .person-name{
-            color:#ff6347;
-            font-size:20px;
-            font-weight:bold;
-            line-height:1.8;
+        .names h5 {
+            margin: 4px 0;
+            font-size: 13px;
+            color: #555;
+            font-weight: normal;
         }
 
-        .relation{
-            color:#666;
-            font-size:13px;
-            margin-top:4px;
+        .card-content {
+            padding: 15px;
         }
 
-        .card-content{
-            padding:20px;
+        .card-content p {
+            color: #555;
+            font-size: 14px;
+            margin: 6px 0;
         }
 
-        .card-content p{
-            color:#555;
-            font-size:15px;
-            margin:10px 0;
-            line-height:1.7;
+        .button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 14px;
+            background-color: #ff6347;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
         }
-
-        .button{
-            display:inline-block;
-            margin-top:16px;
-            padding:10px 18px;
-            background:#ff6347;
-            color:#fff;
-            border-radius:6px;
-            text-decoration:none;
-            font-size:14px;
-        }
-
-        .download-btn{
-            margin-top:22px;
-            padding:12px 22px;
-            border:none;
-            background:#e65100;
-            color:#fff;
-            border-radius:8px;
-            cursor:pointer;
-            font-size:15px;
-            box-shadow:0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .download-btn:hover{
-            background:#cc4a00;
-        }
-
     </style>
-
 </head>
 
 <body>
 
-    <div class="card" id="invitationCard">
+<div class="card">
 
-        <!-- Header -->
-        <div class="header">
-            <h1>You're Invited!</h1>
-        </div>
+    <p class="invitation-text">You're Invited!</p>
 
-        <!-- Ganesh Image -->
-        <div class="image-container">
-
-            <img
-                src="https://images.unsplash.com/photo-1604608672516-f1b9b1bcd6a0?q=80&w=1000&auto=format&fit=crop"
-                alt="Ganesh"
-                class="img-square"
-                crossorigin="anonymous"
-            >
-
-            <div class="ganesh-text">
-                || श्री गणेशाय नमः ||
-            </div>
-
-        </div>
-
-        <!-- Sanskrit Shlok -->
-        <div class="shlok">
-
-            वक्रतुंड महाकाय सूर्यकोटि समप्रभ ।<br>
-
-            निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
-
-        </div>
-
-        <!-- Groom -->
-        <div class="names">
-
-            <div class="person-name">
-                Er. Rishabh Shukla
-            </div>
-
-            <div class="relation">
-                Son of Ke Shukla & Kiran Shukla
-            </div>
-
-        </div>
-
-        <!-- Wedding Image -->
-        <div class="image-container">
-
-            <img
-                src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1000&auto=format&fit=crop"
-                alt="Wedding"
-                class="img-round"
-                crossorigin="anonymous"
-            >
-
-        </div>
-
-        <!-- Bride -->
-        <div class="names">
-
-            <div class="person-name">
-                Er. Shriya Dubey
-            </div>
-
-            <div class="relation">
-                Daughter of Sunil Dubey & Anita Dubey
-            </div>
-
-        </div>
-
-        <!-- Event Details -->
-        <div class="card-content">
-
-            <p>
-                🎉 <strong>Event:</strong>
-                Wedding Invitation
-            </p>
-
-            <p>
-                📅 <strong>Tel Poojan:</strong>
-                Fri, 04 Oct 2024
-            </p>
-
-            <p>
-                ⏰ <strong>Time:</strong>
-                02:00 PM
-            </p>
-
-            <p>
-                📅 <strong>Matri Poojan:</strong>
-                Sat, 05 Oct 2024
-            </p>
-
-            <p>
-                ⏰ <strong>Time:</strong>
-                08:00 AM
-            </p>
-
-            <p>
-                📅 <strong>Shubh Vivah:</strong>
-                Sun, 06 Oct 2024
-            </p>
-
-            <p>
-                ⏰ <strong>Time:</strong>
-                06:00 PM
-            </p>
-
-            <p>
-                📅 <strong>Vidai:</strong>
-                Mon, 07 Oct 2024
-            </p>
-
-            <p>
-                ⏰ <strong>Time:</strong>
-                06:00 AM
-            </p>
-
-            <p>
-                📍 <strong>Venue:</strong><br>
-                Aarna Swarna,<br>
-                Dattani Mall, Vasai (W)
-            </p>
-
-            <a href="#" class="button">
-                We solicit your esteemed presence
-            </a>
-
-        </div>
-
+    <!-- Ganesh Image -->
+    <div class="image-container">
+        <img src="ganesh.jpeg" alt="Lord Ganesh" class="img-square">
+        <p class="ganesh-text">|| श्री गणेशाय नमः ||</p>
     </div>
 
-    <!-- Download Button -->
-    <button class="download-btn" onclick="downloadPDF()">
+    <h4>
+        वक्रतुंड महाकाय सूर्यकोटि समप्रभ ।  
+        निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+    </h4>
 
-        Download Clear PDF
+    <!-- Names -->
+    <div class="names">
+        Er. Rishabh Shukla
+        <h5>Son of Ke Shukla & Kiran Shukla</h5>
+    </div>
 
-    </button>
+    <!-- Wedding Hands Image -->
+    <div class="image-container">
+        <img src="hands.jpeg" alt="Wedding Hands" class="img-round">
+    </div>
 
-    <script>
+    <div class="names">
+        Er. Shriya Dubey
+        <h5>Daughter of Sunil Dubey & Anita Dubey</h5>
+    </div>
 
-        async function downloadPDF() {
+    <!-- Event Details -->
+    <div class="card-content">
+        <p>🎉 <strong>Event:</strong> Wedding Invitation</p>
 
-            try {
+        <p>📅 <strong>Tel Poojan:</strong> Fri, 04 Oct 2024</p>
+        <p>⏰ <strong>Time:</strong> 02:00 PM</p>
 
-                const { jsPDF } = window.jspdf;
+        <p>📅 <strong>Matri Poojan:</strong> Sat, 05 Oct 2024</p>
+        <p>⏰ <strong>Time:</strong> 08:00 AM</p>
 
-                const card = document.getElementById('invitationCard');
+        <p>📅 <strong>Shubh Vivah:</strong> Sun, 06 Oct 2024</p>
+        <p>⏰ <strong>Time:</strong> 06:00 PM</p>
 
-                const canvas = await html2canvas(card, {
+        <p>📅 <strong>Vidai:</strong> Mon, 07 Oct 2024</p>
+        <p>⏰ <strong>Time:</strong> 06:00 AM</p>
 
-                    scale: window.devicePixelRatio * 3,
+        <p>
+            📍 <strong>Venue:</strong><br>
+            Aarna Swarna,<br>
+            Dattani Mall, Vasai (W)
+        </p>
 
-                    useCORS: true,
+        <a href="#" class="button">We solicit your esteemed presence</a>
+    </div>
 
-                    backgroundColor: '#ffffff',
-
-                    letterRendering: true,
-
-                    scrollX: 0,
-
-                    scrollY: 0
-
-                });
-
-                const imgData = canvas.toDataURL('image/jpeg', 1.0);
-
-                const pdf = new jsPDF('p', 'pt', 'a4');
-
-                const pageWidth = pdf.internal.pageSize.getWidth();
-
-                const pageHeight = pdf.internal.pageSize.getHeight();
-
-                const margin = 25;
-
-                const imgWidth = pageWidth - margin * 2;
-
-                const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-                let finalWidth = imgWidth;
-
-                let finalHeight = imgHeight;
-
-                const maxHeight = pageHeight - margin * 2;
-
-                if (imgHeight > maxHeight) {
-
-                    const ratio = maxHeight / imgHeight;
-
-                    finalWidth = imgWidth * ratio;
-
-                    finalHeight = imgHeight * ratio;
-                }
-
-                const xOffset = (pageWidth - finalWidth) / 2;
-
-                pdf.addImage(
-
-                    imgData,
-
-                    'JPEG',
-
-                    xOffset,
-
-                    margin,
-
-                    finalWidth,
-
-                    finalHeight
-
-                );
-
-                pdf.save('Wedding_Invitation.pdf');
-
-            }
-
-            catch(error){
-
-                console.error(error);
-
-                alert('PDF generation failed');
-
-            }
-
-        }
-
-    </script>
+</div>
 
 </body>
-
-</html>
+</html> 
